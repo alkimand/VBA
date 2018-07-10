@@ -1,0 +1,62 @@
+#include <iostream>
+#include "stdlib.h"
+#include "cstdlib"
+char * sum(char *x, char *y);
+
+
+char * sum(char *x, char *y)
+{
+	unsigned long long int length;
+
+	if (strlen(x) > strlen(y))
+		length = strlen(x) + 1;
+	else
+		length = strlen(y) + 1;
+
+	char *Din = new char[length];
+	for (int i = length - 1; i != -1; i--) {
+		
+		Din[i]=y[i]+x[i]
+
+		//	b[i] += a[i]; // суммируем последние разр€ды чисел
+		//	b[i + 1] += (b[i] / 10); // если есть разр€д дл€ переноса, переносим его в следующий разр€д
+		//	b[i] %= 10; // если есть разр€д дл€ переноса он отсекаетс€
+		//}
+		//if (b[length - 1] == 0)
+		//	length--;
+
+	}
+	
+	//char Din[] = { '∆','и','л','-','б','ы','л',' ','п','Є'};
+	//Din = { 'g', 'k' };
+	Din[1] = '1';
+	return Din;
+}
+
+
+int main()
+{
+	//strtoul
+	//char *s = "13";
+	char Din []= "12345";
+	int sz2=strlen(Din);
+	char Din2[] = "12345678";
+	int sz = sizeof(Din)/ sizeof(char)-1;
+	//char *x;
+	char *x = Din;
+	char *y = Din2;;
+	//char *x =Din;
+	//char *x = Din2;
+	//char *Din3 = new char[10];
+	char *Din3 = sum(x, y);
+	//char * pEnd;
+	//long int li1 = strtoul(Din, &pEnd, 10);
+
+	//std::cout << strtol(x) << std::endl;
+	//std::cout << strtol(Din2) << std::endl;
+	//std::cout << NOD(a, b) << " " << NOK(a, b) << std::endl;
+	//Din3 = sum(x, y);
+	std::cout << Din3[1] << std::endl;
+	//cout << NOK(20, 5) << endl;
+	return 0;
+}
