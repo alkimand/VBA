@@ -1,62 +1,35 @@
-#include <iostream>
-#include "stdlib.h"
-#include "cstdlib"
-char * sum(char *x, char *y);
+1) Дано: VBA-процедура, которая ищет и выводит все значения из таблицы entity_attributes_xref, соответствующие условию: entityID=25 и value_txt содержит «неверное значение атрибута»
+
+Private Sub subTest1()
+Dim rs1 As Recordset, s1 As String
+s1 = "SELECT id_entity_attributes, entityID FROM entity_attributes_xref WHERE value_txt Like '*неверное значение атрибута*'"
+Set rs1 = CurrentDb.OpenRecordset(s1, dbOpenSnapshot)
+    Do While rs1.EOF = False
+        If rs1.Fields("entityID") = 25 Then
+            Debug.Print rs1.Fields("id_entity_attributes")
+        End If
+    Loop
+rs1.Close: Set rs1 = Nothing
+End Sub
+
+1.1) Вопрос: почему цикл ищет не все записи, варианты правки кода для поиска всех записей соотв. условиям поиска указанным в п.1
+1.2) Задание: ваш вариант оптимизации этого кода
 
 
-char * sum(char *x, char *y)
-{
-	unsigned long long int length;
+2) Дано: Таблица users (много тысяч записей) пользователей и их кладров. Первые 6 записей:
+id kladr_full city_name
+76089 770000000000000 Москва
+75982 520000010000000 Нижний Новгород
+76136 480000010000000 Липецк г.
+75225 520000070000000 Выкса г.
+75974 520270010000000 Кстово г.
+76121 700000010000000 Томск г.
+...
 
-	if (strlen(x) > strlen(y))
-		length = strlen(x) + 1;
-	else
-		length = strlen(y) + 1;
+Задание: Написать VBA-функцию, которая возвращает в debug id пользователей из нижегородского региона
 
-	char *Din = new char[length];
-	for (int i = length - 1; i != -1; i--) {
-		
-		Din[i]=y[i]+x[i]
-
-		//	b[i] += a[i]; // суммируем последние разряды чисел
-		//	b[i + 1] += (b[i] / 10); // если есть разряд для переноса, переносим его в следующий разряд
-		//	b[i] %= 10; // если есть разряд для переноса он отсекается
-		//}
-		//if (b[length - 1] == 0)
-		//	length--;
-
-	}
-	
-	//char Din[] = { 'Ж','и','л','-','б','ы','л',' ','п','ё'};
-	//Din = { 'g', 'k' };
-	Din[1] = '1';
-	return Din;
-}
-
-
-int main()
-{
-	//strtoul
-	//char *s = "13";
-	char Din []= "12345";
-	int sz2=strlen(Din);
-	char Din2[] = "12345678";
-	int sz = sizeof(Din)/ sizeof(char)-1;
-	//char *x;
-	char *x = Din;
-	char *y = Din2;;
-	//char *x =Din;
-	//char *x = Din2;
-	//char *Din3 = new char[10];
-	char *Din3 = sum(x, y);
-	//char * pEnd;
-	//long int li1 = strtoul(Din, &pEnd, 10);
-
-	//std::cout << strtol(x) << std::endl;
-	//std::cout << strtol(Din2) << std::endl;
-	//std::cout << NOD(a, b) << " " << NOK(a, b) << std::endl;
-	//Din3 = sum(x, y);
-	std::cout << Din3[1] << std::endl;
-	//cout << NOK(20, 5) << endl;
-	return 0;
-}
+===================================
+Не стесняйтесь, если возникнут вопросы.
+По результатам выполнения задания назначается собеседование.
+Большинство программ выполняется в среде MS Access 2003
+С уважением, Сергей
